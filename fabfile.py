@@ -52,8 +52,10 @@ def kernelReport():
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s" % (env.excludes), pty=True)
         if checkpatch.return_code == 100:
             needspatch = "True"
-        else:
+        elif checkpatch.return_code == 0:
             needspatch = "False"
+        else:
+            needspatch = "Error"
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" %(env.host, result, redhat, uptime, numkern, needspatch)
         return foo
 
