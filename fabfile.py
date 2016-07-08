@@ -11,6 +11,7 @@ from fabric.colors import red, green
 import json
 import re
 import os
+import time
 
 def excludehosts(func):
     def closuref(*args, **kwargs):
@@ -63,8 +64,9 @@ def kernelReport():
 @parallel(pool_size=5)
 @excludehosts
 def get_stats():
+    timstr = time.strftime("%Y%m%d-%H%M%S")
+    filename1 = "infoReport%s.csv" %(timstr)
     bar = kernelReport()
-    print "Stuff: %s" %(bar)
-    f = open('foobar.csv', 'a')
+    f = open(filename1, 'a')
     f.write(bar)
     f.close()
