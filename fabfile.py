@@ -65,3 +65,6 @@ def kernelReport():
 def get_stats():
     bar = kernelReport()
     print "Stuff: %s" %(bar)
+    f = open('foobar.csv', 'a')
+    f.write(bar)
+    f.close()
