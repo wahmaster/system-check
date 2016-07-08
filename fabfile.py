@@ -49,7 +49,7 @@ def kernelReport():
         uptime = run("uptime")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
-        patchable = run("yum check-update --disablerepo='*artifactory' %s" % (env.excludes), pty=True)
+        patchable = run("yum check-update --disablerepo='*artifactory' --exclude=puppet* --exclude=sensu --exclude=mongo* --exclude=redis* --exclude=rabbitmq* --exclude=jfrog-artifactory*" ,pty=True)
         if patchable.return_code == 100:
             patches = "True"
         elif patchabel.return_code == 0:
