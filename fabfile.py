@@ -51,9 +51,8 @@ def kernelReport():
         uptime = run("uptime")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
-        if(result.stderr != ""):
-            error = "On %s: %s" %(result, result.stderr)
-            print error
+        error = "On %s: %s" %(result, result.stderr)
+        print error
         print "Result Return Code: %s" % result.return_code
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
