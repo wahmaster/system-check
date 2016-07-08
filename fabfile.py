@@ -48,10 +48,6 @@ def kernelReport():
         uptime = run("uptime")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
-        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
-        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
-        print "<font color=white>%s uptime: </font><font color=yellow>%s</font>" % (env.host, uptime)
-        print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font></br>" % (env.host, numkern)
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" %(env.host, result, redhat, uptime, numkern)
         return foo
 
