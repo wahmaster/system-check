@@ -30,6 +30,7 @@ def excludehosts(func):
 @parallel(pool_size=8)
 @excludehosts
 def checkupdate():
+    env.parallel = True
     with hide('everything'):
         result = run("yum check-update --disablerepo='*artifactory' %s" % (env.excludes), pty=True)
         if result.return_code == 100:
@@ -63,6 +64,3 @@ def kernelReport():
 def get_stats():
     bar = kernelReport()
     print "Stuff: %s" %(bar)
-    fd = open('document.csv','a')
-    fd.write(bar)
-    fd.close()
