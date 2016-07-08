@@ -42,6 +42,7 @@ def checkupdate():
 
 def kernelReport():
     """Report all running kernel versions"""
+    env.parallel = True
     with hide('commands'):
         result = run("uname -r")
         redhat = run("cat /etc/redhat-release")
