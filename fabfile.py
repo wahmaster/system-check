@@ -42,13 +42,19 @@ def checkupdate():
 def kernelReport():
     """Report all running kernel versions"""
     with hide('commands'):
-        env.parallel = True
         result = run("uname -r")
         redhat = run("cat /etc/redhat-release")
         uptime = run("uptime")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
-        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" %(env.host, result, redhat, uptime, numkern)
+        patchable = run("yum check-update --disablerepo='*artifactory' %s" % (env.excludes), pty=True)
+        if patchable.return_code == 100:
+            patches = "True"
+        elif patchabel.return_code == 0:
+            patches = "False"
+        else:
+            patches = "Check"
+        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" %(env.host, result, redhat, uptime, numkern, patches)
         return foo
 
 @task
@@ -57,4 +63,6 @@ def kernelReport():
 def get_stats():
     bar = kernelReport()
     print "Stuff: %s" %(bar)
-
+    fd = open('document.csv','a')
+    fd.write(bar)
+    fd.close()
