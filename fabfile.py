@@ -64,7 +64,7 @@ def kernelReport():
 @parallel(pool_size=5)
 @excludehosts
 def get_stats():
-    timstr = time.strftime("%Y%m%d-%H%M%S")
+    timstr = time.strftime("%Y%m%d")
     filename1 = "infoReport%s.csv" %(timstr)
     bar = kernelReport()
     f = open(filename1, 'a')
