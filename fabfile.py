@@ -56,7 +56,7 @@ def kernelReport():
             needspatch = "False"
         else:
             needspatch = "Error"
-        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" %(env.host, result, redhat, uptime, numkern, needspatch)
+        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, uptime, numkern, needspatch)
         return foo
 
 @task
