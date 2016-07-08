@@ -47,13 +47,11 @@ def kernelReport():
     with hide('commands'):
         env.parallel = True
         result = run("uname -r")
+        print "Stuck: %s" %(result.stderr)
         redhat = run("cat /etc/redhat-release")
         uptime = run("uptime")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
-        error = "On %s: %s" %(result, result.stderr)
-        print error
-        print "Result Return Code: %s" % result.return_code
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
         print "<font color=white>%s uptime: </font><font color=yellow>%s</font>" % (env.host, uptime)
