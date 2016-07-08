@@ -39,15 +39,11 @@ def checkupdate():
         elif result.return_code == 1:
             print "<font color=red>%s returned an error</font>" % env.host
 
-@task
-@excludehosts
-@parallel(pool_size=5)
 def kernelReport():
     """Report all running kernel versions"""
     with hide('commands'):
         env.parallel = True
         result = run("uname -r")
-        print "Stuck: %s" %(result.stderr)
         redhat = run("cat /etc/redhat-release")
         uptime = run("uptime")
         kernels = run("rpm -q kernel")
@@ -56,18 +52,13 @@ def kernelReport():
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
         print "<font color=white>%s uptime: </font><font color=yellow>%s</font>" % (env.host, uptime)
         print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font></br>" % (env.host, numkern)
+        foo = "%s,%s,%s,%s,%s" %(env.host, result, redhat, uptime, numkern)
+        return foo
 
 @task
 @parallel(pool_size=5)
 @excludehosts
 def get_stats():
-    """report kernel cpus and memory info from server"""
-    with hide('everything'):
-        with cd("/tmp"):
-            kernelver = run("uname -r")
-            cpuinfo = run("cat /proc/cpuinfo |grep processor|wc -l")
-            meminfo = run("egrep 'MemTotal|MemFree|MemAvailable|SwapCached|SwapTotal|SwapFree' /proc/meminfo")
-            print "%s is running kernel: %s" % (env.host, kernelver)
-            print "%s has %s CPU cores." % (env.host, cpuinfo)
-            print "%s meminfo:\n %s \n\n" % (env.host, meminfo)
+    bar = kernelReport()
+    print "Stuff: %s" %(bar)
 
