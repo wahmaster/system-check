@@ -49,6 +49,7 @@ def kernelReport():
         uptime = run("uptime")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
+        result = run("yum check-update --disablerepo='*artifactory' %s" % (env.excludes), pty=True)
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"" %(env.host, result, redhat, uptime, numkern)
         return foo
 
