@@ -52,7 +52,6 @@ def setupCSV(var):
     print "%s" %(var)
 
 @task
-"""@parallel(pool_size=5)"""
 @excludehosts
 def get_stats():
     """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available patches"""
