@@ -53,8 +53,8 @@ def kernelReport():
 @runs_once
 def setupCSV(var):
     local("rm %s" % var)
-    pwd=local(pwd)
-    print "writing log file on bolt, here: %s%s" %(pwd,var)
+    ourpwd=local("pwd")
+    print "writing log file on bolt, here: %s%s" %(ourpwd,var)
     print "This will take a long time,  so get a cup of coffee and relax!"
 
 @task
