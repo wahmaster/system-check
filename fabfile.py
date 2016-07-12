@@ -29,7 +29,7 @@ def excludehosts(func):
 
 def kernelReport():
     """Report all running kernel versions"""
-    env.parallel = True
+    """env.parallel = True"""
     with hide('commands'):
         result = run("uname -r")
         redhat = run("cat /etc/redhat-release")
@@ -52,7 +52,7 @@ def setupCSV(var):
     print "%s" %(var)
 
 @task
-@parallel(pool_size=5)
+"""@parallel(pool_size=5)"""
 @excludehosts
 def get_stats():
     """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available patches"""
