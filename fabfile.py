@@ -46,6 +46,11 @@ def kernelReport():
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, uptime, numkern, needspatch)
         return foo
 
+@runs_once
+def setupCSV(var):
+    """local(rm var)"""
+    print "%s" %(var)
+
 @task
 @parallel(pool_size=5)
 @excludehosts
@@ -53,6 +58,7 @@ def get_stats():
     """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available patches"""
     timstr = time.strftime("%Y%m%d")
     filename1 = "infoReport%s.csv" %(timstr)
+    setupCSV(filename1)
     bar = kernelReport()
     f = open(filename1, 'a')
     f.write(bar)
