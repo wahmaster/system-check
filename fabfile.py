@@ -48,7 +48,7 @@ def kernelReport():
 
 @runs_once
 def setupCSV(var):
-    """local(rm var)"""
+    local("rm %s" % var)
     print "%s" %(var)
 
 @task
