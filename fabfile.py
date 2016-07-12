@@ -44,12 +44,18 @@ def kernelReport():
         else:
             needspatch = "Error"
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, uptime, numkern, needspatch)
+        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
+        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
+        print "<font color=white>%s uptime: </font><font color=yellow>%s</font>" % (env.host, uptime)
+        print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font></br>" % (env.host, numkern)
         return foo
 
 @runs_once
 def setupCSV(var):
     local("rm %s" % var)
-    print "%s" %(var)
+    pwd=local(pwd)
+    print "writing log file on bolt, here: %s%s" %(pwd,var)
+    print "This will take a long time,  so get a cup of coffee and relax!"
 
 @task
 @excludehosts
