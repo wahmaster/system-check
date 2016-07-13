@@ -55,9 +55,9 @@ def kernelReport():
 def setupCSV(var):
     testing = local('head -1 %s | grep -v Server' %var)
     print "testing: %s" % testing
-    """ if local('head -1 %s | grep -v Server' %var).succeeded:
+    if testing != 'Server':
         local("rm %s" % var)
-        local("echo \"Sever\",\"Kernel\",\"Release\",\"Uptime\",\"Installed Kernels\",\"Needs Patching\" > %s" % var) """
+        local("echo \"Sever\",\"Kernel\",\"Release\",\"Uptime\",\"Installed Kernels\",\"Needs Patching\" > %s" % var)
 
 @task
 @parallel(pool_size=5)
