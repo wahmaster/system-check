@@ -53,9 +53,9 @@ def kernelReport():
 
 @runs_once
 def setupCSV(var):
-    testing = local('head -1 %s | grep Server' %var)
+    testing = local('head -1 %s | grep Server' %var).succeeded
     print "testing: %s" % testing
-    if testing != 'Server':
+    if testing == 1:
         local("rm %s" % var)
         local("echo \"Sever\",\"Kernel\",\"Release\",\"Uptime\",\"Installed Kernels\",\"Needs Patching\" > %s" % var)
 
