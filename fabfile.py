@@ -43,7 +43,10 @@ def kernelReport():
         else:
             needspatch = "Error"
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, uptime, numkern, needspatch)
-        print "<font color=white>%s Needs Updating: </font><font color=yellow>%s</font>" % (env.host, needspatch)
+        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
+        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
+        print "<font color=white>%s uptime: </font><font color=yellow>%s</font>" % (env.host, uptime)
+        print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font>" % (env.host, numkern)
         return foo
 
 @runs_once
