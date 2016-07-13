@@ -61,7 +61,7 @@ def setupCSV(var):
 @task
 @excludehosts
 def get_stats():
-    """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available patches"""
+    """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available updates"""
     timstr = time.strftime("%Y%m%d")
     filename1 = "infoReport%s.csv" %(timstr)
     setupCSV(filename1)
