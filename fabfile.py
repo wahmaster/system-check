@@ -53,12 +53,12 @@ def kernelReport():
 
 @runs_once
 def setupCSV(var):
-    local("rm %s" % var)
-    local("echo \"Sever\",\"Kernel\",\"Release\",\"Uptime\",\"Installed Kernels\",\"Needs Patching\" > %s" % var)
-    print "writing log file on bolt, here: /opt/fabric/%s" %(var)
-    print "This will take a long time,  so get a cup of coffee and relax!"
+    if local('head -1 %s | grep -v Server').succeeded:
+        local("rm %s" % var)
+        local("echo \"Sever\",\"Kernel\",\"Release\",\"Uptime\",\"Installed Kernels\",\"Needs Patching\" > %s" % var)
 
 @task
+@parallel(pool_size=5)
 @excludehosts
 def get_stats():
     """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available updates"""
