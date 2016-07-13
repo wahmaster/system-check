@@ -53,7 +53,7 @@ def kernelReport():
 
 @runs_once
 def setupCSV(var):
-    testing = local('head -1 %s | grep -v Server' %var)
+    testing = local('head -1 %s | grep Server' %var)
     print "testing: %s" % testing
     if testing != 'Server':
         local("rm %s" % var)
