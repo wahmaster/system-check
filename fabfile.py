@@ -57,7 +57,7 @@ def setupCSV(var):
 def get_stats():
     """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available updates"""
     timstr = time.strftime("%Y%m%d")
-    filename1 = "infoReport%s.csv" %(timstr)
+    filename1 = "%s-%s.csv" %(env.filename, timstr)
     setupCSV(filename1)
     bar = kernelReport()
     f = open(filename1, 'a')
