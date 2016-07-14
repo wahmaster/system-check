@@ -45,6 +45,7 @@ def kernelReport():
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
         print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font>" % (env.host, numkern)
+        print "<font color=white>%s Needs Update: </font><font color=yellow>%s</font>" % (env.host, needspatch)
         return foo
 
 @runs_once
