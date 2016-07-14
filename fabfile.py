@@ -38,9 +38,9 @@ def kernelReport():
         numkern = len(kernels.split('\n'))
         fh = StringIO();
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s " % (env.excludes), pty=True, stdout=fh)
+        print "Results: %s" %(fh)
         if checkpatch.return_code == 100:
             needspatch = "True"
-            print "Results: %s" %(fh)
         elif checkpatch.return_code == 0:
             needspatch = "False"
         else:
