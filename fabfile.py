@@ -35,7 +35,7 @@ def kernelReport():
         redhat = run("cat /etc/redhat-release")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
-        checkpatch = run("yum check-update --disablerepo='*artifactory' %s " % (env.excludes))
+        checkpatch = run("yum check-update --disablerepo='*artifactory' %s | awk 'p;/^$/{p=1}'" % (env.excludes))
         if checkpatch.return_code == 100:
             needspatch = "True"
             print "%s: %s \n" % (env.host, checkpatch)
