@@ -36,6 +36,7 @@ def kernelReport():
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s -e 0 -q" % (env.excludes))
+        checkpatch.replace('\n', ':')
         if checkpatch.return_code == 100:
             needspatch = "True"
             print "%s: %s \n" % (env.host, checkpatch)
