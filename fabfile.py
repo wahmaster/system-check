@@ -38,7 +38,7 @@ def kernelReport():
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s" % (env.excludes))
         if checkpatch.return_code == 100:
             needspatch = "True"
-            patches = local("echo %s | awk 'p;/^$/{p=1}'" %checkpatch)
+            patches = local("%s > awk 'p;/^$/{p=1}'" %checkpatch)
             print "%s: %s \n" % (env.host, patches)
         elif checkpatch.return_code == 0:
             needspatch = "False"
