@@ -8,10 +8,12 @@ from fabric.network import disconnect_all
 from fabric.contrib.console import confirm
 from functools import wraps
 from fabric.colors import red, green
+from StringIO import StringIO
 import json
 import re
 import os
 import time
+
 
 def excludehosts(func):
     def closuref(*args, **kwargs):
@@ -34,6 +36,7 @@ def kernelReport():
         redhat = run("cat /etc/redhat-release")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
+        fh = StringIO();
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s " % (env.excludes), pty=True, stdout=fh)
         if checkpatch.return_code == 100:
             needspatch = "True"
