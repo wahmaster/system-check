@@ -32,29 +32,24 @@ def kernelReport():
     """Report all running kernel versions"""
     with hide('commands'):
         result = run("uname -r")
-        redhat = run("cat /etc/redhat-release")
-        kernels = run("rpm -q kernel")
-        numkern = len(kernels.split('\n'))
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s -e 0 -q" % (env.excludes))
         checkpatch.replace('\n', ':')
         if checkpatch.return_code == 100:
             needspatch = "True"
-            print "%s: %s \n" % (env.host, checkpatch)
+            print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, checkpatch)
         elif checkpatch.return_code == 0:
             needspatch = "False"
         else:
             needspatch = "Error"
-        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, numkern, needspatch, checkpatch)
+        foo = "\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, needspatch, checkpatch)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
-        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
-        print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font>" % (env.host, numkern)
         print "<font color=white>%s Needs Update: </font><font color=yellow>%s</font>" % (env.host, needspatch)
         return foo
 
 @runs_once
 def setupCSV(var):
     local("rm %s" % var)
-    local("echo \"Server\",\"Kernel\",\"Release\",\"Installed Kernels\",\"Needs Patching\" > %s" % var)
+    local("echo \"Server\",\"Kernel\",\"Needs Patching\" > %s" % var)
 
 @task
 @excludehosts
