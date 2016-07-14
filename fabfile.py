@@ -42,7 +42,7 @@ def kernelReport():
         else:
             needspatch = "Error"
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, numkern, needspatch)
-        print "Checkpath: %s" % (checkpath)
+        print "Checkpath: %s" % (checkpatch)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
         print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font>" % (env.host, numkern)
