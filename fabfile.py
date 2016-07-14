@@ -34,15 +34,15 @@ def kernelReport():
         redhat = run("cat /etc/redhat-release")
         kernels = run("rpm -q kernel")
         numkern = len(kernels.split('\n'))
-        checkpatch = run("yum check-update --disablerepo='*artifactory' %s " % (env.excludes), pty=True)
+        checkpatch = run("yum check-update --disablerepo='*artifactory' %s " % (env.excludes), pty=True, stdout=fh)
         if checkpatch.return_code == 100:
             needspatch = "True"
+            print "Results: %s" %(fh)
         elif checkpatch.return_code == 0:
             needspatch = "False"
         else:
             needspatch = "Error"
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, numkern, needspatch)
-        print "Checkpath: %s" % (checkpatch)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
         print "<font color=white>%s Installed Kernels: </font><font color=yellow>%s</font>" % (env.host, numkern)
