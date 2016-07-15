@@ -52,7 +52,7 @@ def kernelReport():
 @runs_once
 def setupCSV(var):
     local("rm %s" % var)
-    local("echo \"Server\",\"Kernel\",\"Needs Patching\" > %s" % var)
+    local("echo \"Server\",\"Kernel\",\"Release\",\"Needs Patching\" > %s" % var)
 
 @task
 @excludehosts
