@@ -34,7 +34,8 @@ def kernelReport():
         result = run("uname -r")
         redhat = run("cat /etc/redhat-release")
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s -e 0 -q" % (env.excludes))
-        """ checkpatch.replace('\n', ':') """
+        checkpatch.replace('\n', '')
+        checkpatch.replace('\r', '')
         if checkpatch.return_code == 100:
             needspatch = "True"
             print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, checkpatch)
