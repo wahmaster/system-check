@@ -36,7 +36,7 @@ def kernelReport():
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s -e 0 -q" % (env.excludes))
         if checkpatch.return_code == 100:
             needspatch = "True"
-            print "<font color=white>%s: </font><br/><font color=yellow>%s</font>" % (env.host, checkpatch)
+            print "<font color=white>%s</font><font color=red> Available Updates: </font><br/>%s" % (env.host, checkpatch)
         elif checkpatch.return_code == 0:
             needspatch = "False"
             checkpatch = "No Updates"
