@@ -32,8 +32,9 @@ def kernelReport():
     """Report all running kernel versions"""
     with hide('commands'):
         result = run("uname -r")
+        redhat = run("cat /etc/redhat-release")
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s -e 0 -q" % (env.excludes))
-        checkpatch.replace('\n', ':')
+        """ checkpatch.replace('\n', ':') """
         if checkpatch.return_code == 100:
             needspatch = "True"
             print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, checkpatch)
@@ -41,7 +42,7 @@ def kernelReport():
             needspatch = "False"
         else:
             needspatch = "Error"
-        foo = "\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, needspatch, checkpatch)
+        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, needspatch, checkpatch)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s Needs Update: </font><font color=yellow>%s</font>" % (env.host, needspatch)
         return foo
