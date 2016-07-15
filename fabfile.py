@@ -30,7 +30,7 @@ def excludehosts(func):
 
 def kernelReport():
     """Report all running kernel versions"""
-    with hide('commands'):
+    with hide('everything'):
         result = run("uname -r")
         redhat = run("cat /etc/redhat-release")
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s -e 0 -q" % (env.excludes))
