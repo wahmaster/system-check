@@ -33,7 +33,7 @@ def kernelReport():
     with hide('everything'):
         result = run("uname -r")
         redhat = run("cat /etc/redhat-release")
-        uptime = run("uptime | cut -d , -f 1 | cut -d " " -f 3,4,5")
+        uptime = run("uptime | cut -d , -f 1 )
         checkpatch = run("yum check-update --disablerepo='*artifactory' %s -e 0 -q" % (env.excludes))
         if checkpatch.return_code == 100:
             needspatch = "True"
