@@ -44,7 +44,7 @@ def kernelReport():
         else:
             needspatch = "Error"
             checkpatch = "No Updates"
-        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, ,uptime, needspatch, checkpatch)
+        foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, uptime, needspatch, checkpatch)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
         print "<font color=white>%s Needs Update: </font><font color=yellow>%s</font>" % (env.host, needspatch)
