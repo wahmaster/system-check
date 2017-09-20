@@ -47,7 +47,7 @@ def kernelReport():
         foo = "\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n" %(env.host, result, redhat, uptime, needspatch)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, result)
         print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, redhat)
-        print "<font color=white>%s: </font><font color=yellow>%s</font>" % (env.host, uptime)
+        print "<font color=white>%s Uptime: </font><font color=yellow>%s</font>" % (env.host, uptime)
         print "<font color=white>%s Needs Update: </font><font color=yellow>%s</font>" % (env.host, needspatch)
         return foo
 
