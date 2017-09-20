@@ -28,8 +28,6 @@ def excludehosts(func):
     closuref.func_dict['wrapped'] = func
     return wraps(func)(closuref)
 
-@task
-@parallel(pool_size=8)
 def kernelReport():
     """Report all running kernel versions"""
     with hide('everything'):
@@ -60,6 +58,7 @@ def setupCSV(var):
 
 @task
 @excludehosts
+@parallel(pool_size=8)
 def get_stats():
     """Creates a csv report containing kernel version along with number of installed kernels, uptime and if there are available updates"""
     timstr = time.strftime("%Y%m%d")
