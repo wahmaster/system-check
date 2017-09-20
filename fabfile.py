@@ -28,6 +28,8 @@ def excludehosts(func):
     closuref.func_dict['wrapped'] = func
     return wraps(func)(closuref)
 
+@task
+@parallel(pool_size=8)
 def kernelReport():
     """Report all running kernel versions"""
     with hide('everything'):
